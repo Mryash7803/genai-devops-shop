@@ -15,11 +15,10 @@ The application consists of a **Streamlit Frontend** and a **FastAPI Backend** t
 
 ## 🏗️ Architecture
 
-```mermaid
 graph TD
     User[User] -->|HTTP/LB| Frontend[Streamlit Frontend]
     Frontend -->|REST API| Backend[FastAPI Backend]
-    Backend -->|GRPC| VertexAI[Vertex AI (Gemini Pro)]
+    Backend -->|GRPC| VertexAI["Vertex AI (Gemini Pro)"]
     
     subgraph "Google Kubernetes Engine (GKE)"
         Frontend
