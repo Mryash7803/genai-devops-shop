@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: us-central1-docker.pkg.dev/dogwood-channel-478619-p7/genai-repo/frontend-ui:v1
+        image: us-central1-docker.pkg.dev/dogwood-channel-478619-p7/genai-repo/frontend-ui:final-v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8501
