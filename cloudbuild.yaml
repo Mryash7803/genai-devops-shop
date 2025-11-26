@@ -35,7 +35,7 @@ steps:
   # 4. Force Restart (To pick up "latest" image)
   # ===========================
   - name: 'gcr.io/cloud-builders/kubectl'
-    id: 'Restart Deployments'
+    id: 'Force Restart'
     args: ['rollout', 'restart', 'deployment', 'backend-api', 'frontend-ui']
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
