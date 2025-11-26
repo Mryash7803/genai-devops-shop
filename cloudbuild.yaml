@@ -15,11 +15,11 @@ steps:
   # ===========================
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Build Frontend'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:latest', './frontend']
-
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:final-v1', './frontend']
+  
   - name: 'gcr.io/cloud-builders/docker'
     id: 'Push Frontend'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:final-v1']
 
   # ===========================
   # 3. Deploy to GKE
