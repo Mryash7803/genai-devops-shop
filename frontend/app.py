@@ -3,8 +3,8 @@ import requests
 import os
 
 # Title of the App
-st.title("🤖 Gen AIBHADAWA shop")
-st.subheader("Powered by Gemini 3.0 Pro & GKE")
+st.title("🤖 Gen AI DEVOPS SHOP")
+st.subheader("Powered by Gemini 2.5 Pro & GKE")
 
 # Get Backend URL from Environment Variable (or use localhost for testing)
 # IN KUBERNETES, we will set this to the Backend Service Name
