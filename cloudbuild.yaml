@@ -1,0 +1,45 @@
+steps:
+  # ===========================
+  # 1. Build & Push Backend
+  # ===========================
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build Backend'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/backend-api:latest', './backend']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push Backend'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/backend-api:latest']
+
+  # ===========================
+  # 2. Build & Push Frontend
+  # ===========================
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Build Frontend'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:latest', './frontend']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push Frontend'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/genai-repo/frontend-ui:latest']
+
+  # ===========================
+  # 3. Deploy to GKE
+  # ===========================
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'Deploy to K8s'
+    args: ['apply', '-f', 'k8s/']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=genai-cluster'
+
+  # ===========================
+  # 4. Force Restart (To pick up "latest" image)
+  # ===========================
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: 'Restart Deployments'
+    args: ['rollout', 'restart', 'deployment', 'backend-api', 'frontend-ui']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=genai-cluster'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

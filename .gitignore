@@ -1,0 +1,11 @@
+--pycache--/
+.pyc
+.env
+venv
+.terraform/
+infra/.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+.terraform/
+infra/.terraform/
